@@ -1,0 +1,24 @@
+{
+  "name": "did-core-test-server",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/run.js",
+    "test": "jest",
+    "docker:build": "docker build --tag or13/did-core-test-server:1.0 .",
+    "docker:run": "docker run --publish 3000:3000 --detach --name dcts or13/did-core-test-server:1.0",
+    "docker:publish": "docker push or13/did-core-test-server:1.0"
+  },
+  "author": "Orie Steele",
+  "license": "https://www.w3.org/Consortium/Legal/copyright-software",
+  "dependencies": {
+    "fastify": "^3.3.0",
+    "fastify-cors": "^4.1.0",
+    "fastify-swagger": "^3.3.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "supertest": "^4.0.2"
+  }
+}
