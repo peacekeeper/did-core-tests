@@ -1,0 +1,37 @@
+{
+  "scenarios": [
+    {
+      "request": {
+        "name": "did_syntax",
+        "input": {
+          "did": "did:example:123"
+        },
+        "output": {
+          "valid_did": true
+        }
+      }
+    },
+    {
+      "request": {
+        "name": "did_syntax",
+        "input": {
+          "did": "urn:uuid:1c1a2a58-aadd-472e-a719-971b8d3fe1d8"
+        },
+        "output": {
+          "valid_did": false
+        }
+      }
+    },
+    {
+      "request": {
+        "name": "did_syntax",
+        "input": {
+          "did": "did:TEST:123"
+        },
+        "output": {
+          "valid_did": false
+        }
+      }
+    }
+  ]
+}

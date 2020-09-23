@@ -1,0 +1,9 @@
+{
+  "name": "did-syntax",
+  "input": {
+    "did": "did:example:123"
+  },
+  "output": {
+    "valid_did": true
+  }
+}

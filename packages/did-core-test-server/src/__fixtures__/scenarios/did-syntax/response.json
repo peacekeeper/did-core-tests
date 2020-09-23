@@ -1,0 +1,8 @@
+{
+  "scenario": "did_syntax",
+  "test": "PASS",
+  "assertion_results": {
+    "DID must not be empty": true,
+    "DID syntax is correctly parsed": true
+  }
+}
