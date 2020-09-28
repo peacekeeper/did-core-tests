@@ -1,19 +1,58 @@
 const assertions = {
-  "DID must not be empty": (scenario) => {
+/*  "DID must not be empty": (scenario) => {
     if (scenario.input.did) return true; else return false;
+  },*/
+  "Negative test: DID must be a valid URL": (scenario) => {
+
+    var tested = false;
+    var correct = true;
+
+    for (i in scenario.tests) {
+      let test = scenario.tests[i];
+
+      var url;
+      try { url = new URL(test.did); } catch (error) { url = null; };
+      let valid = (url !== null);
+
+      if (! valid) { tested = true; correct = correct && (! test.valid); }
+    }
+
+    return tested ? correct : null;
   },
-  "DID syntax is correctly parsed": (scenario) => {
-    var url;
-    // DID must be a valid URL
-    try { url = new URL(scenario.input.did); } catch (error) { url = null; };
-    if (! url) return false === scenario.output.valid_did;
-    // The URI scheme MUST be 'did:'
-    if (! (url.protocol === 'did:')) return false === scenario.output.valid_did;
-    // The DID method name MUST be an ASCII lowercase string
-    let method_name = url.pathname.substring(0, url.pathname.indexOf(':'));
-    if (! (result = method_name.toLowerCase() === method_name)) return false === scenario.output.valid_did;
-    // done
-    return true === scenario.output.valid_did;
+  "Negative test: The URI scheme MUST be 'did:'": (scenario) => {
+
+    var tested = false;
+    var correct = true;
+
+    for (i in scenario.tests) {
+      let test = scenario.tests[i];
+
+      var url;
+      try { url = new URL(test.did); } catch (error) { continue; };
+      let valid = (url.protocol === 'did:');
+
+      if (! valid) { tested = true; correct = correct && (! test.valid); }
+    }
+
+    return tested ? correct : null;
+  },
+  "Negative test: The DID method name MUST be an ASCII lowercase string": (scenario) => {
+
+    var tested = false;
+    var correct = true;
+
+    for (i in scenario.tests) {
+      let test = scenario.tests[i];
+
+      var url;
+      try { url = new URL(test.did); } catch (error) { continue; };
+      let method_name = url.pathname.substring(0, url.pathname.indexOf(':'));
+      let valid = (method_name.toLowerCase() === method_name);
+
+      if (! valid) { tested = true; correct = correct && (! test.valid); }
+    }
+
+    return tested ? correct : null;
   },
 };
 
